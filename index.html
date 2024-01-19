@@ -29,6 +29,7 @@
             max-width: 800px;
             margin: 20px auto;
             position: relative;
+            overflow: hidden;
         }
 
         .mySlides {
@@ -55,6 +56,9 @@
             font-size: 20px;
             color: white;
             cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            z-index: 2;
         }
 
         #slideshow-container .prev {
@@ -63,6 +67,10 @@
 
         #slideshow-container .next {
             right: 10px;
+        }
+
+        #image-container {
+            display: flex;
         }
     </style>
 </head>
@@ -97,7 +105,8 @@
         const slideshowContainer = document.getElementById('image-container');
         slideshowContainer.innerHTML = '';
 
-        const projectImages = projects[projectName].sort(() => Math.random() - 0.5);
+        const projectImages = [...projects[projectName]]; // Copy the array before sorting
+        projectImages.sort(() => Math.random() - 0.5);
 
         projectImages.forEach((image, index) => {
             const slide = document.createElement('div');
