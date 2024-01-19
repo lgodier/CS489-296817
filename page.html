@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Showcase</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .slideshow-container {
+            max-width: 800px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .mySlides {
+            display: none;
+        }
+
+        .mySlides img {
+            width: 100%;
+            height: auto;
+        }
+
+        .zoomable-image {
+            transition: transform 0.3s;
+        }
+
+        .zoomable-image:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a onclick="showProject('EMPATHY')">EMPATHY</a>
+    <a onclick="showProject('DECOMPOSITION')">DECOMPOSITION</a>
+    <a onclick="showProject('ANALOGY')">ANALOGY</a>
+    <a onclick="showProject('STYLE')">STYLE</a>
+    <a onclick="showProject('CONTEXT')">CONTEXT</a>
+    <a onclick="showProject('COLLAGE')">COLLAGE</a>
+</nav>
+
+<div id="slideshow-container" class="slideshow-container"></div>
+
+<script>
+    const projects = {
+        EMPATHY: ['empathy1.jpg', 'empathy2.jpg', 'empathy3.jpg', 'empathy4.jpg'],
+        DECOMPOSITION: ['decomposition1.jpg', 'decomposition2.jpg', 'decomposition3.jpg', 'decomposition4.jpg'],
+        ANALOGY: ['analogy1.jpg', 'analogy2.jpg', 'analogy3.jpg', 'analogy4.jpg'],
+        STYLE: ['style1.jpg', 'style2.jpg', 'style3.jpg', 'style4.jpg'],
+        CONTEXT: ['context1.jpg', 'context2.jpg', 'context3.jpg', 'context4.jpg'],
+        COLLAGE: ['collage1.jpg', 'collage2.jpg', 'collage3.jpg', 'collage4.jpg'],
+    };
+
+    function showProject(projectName) {
+        const slideshowContainer = document.getElementById('slideshow-container');
+        slideshowContainer.innerHTML = '';
+
+        projects[projectName].forEach((image, index) => {
+            const slide = document.createElement('div');
+            slide.className = 'mySlides';
+            slide.innerHTML = `<img src="${image}" class="zoomable-image">`;
+            slideshowContainer.appendChild(slide);
+        });
+
+        showSlides(1);
+    }
+
+    function showSlides(n) {
+        let i;
+        const slides = document.getElementsByClassName('mySlides');
+        if (n > slides.length) {
+            n = 1;
+        }
+        if (n < 1) {
+            n = slides.length;
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = 'none';
+        }
+        slides[n - 1].style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
