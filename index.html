@@ -45,7 +45,24 @@
         }
 
         .zoomable-image:hover {
-            transform: scale(1.2);
+            transform: scale(1.5);
+        }
+
+        #slideshow-container .prev, #slideshow-container .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: white;
+            cursor: pointer;
+        }
+
+        #slideshow-container .prev {
+            left: 10px;
+        }
+
+        #slideshow-container .next {
+            right: 10px;
         }
     </style>
 </head>
@@ -60,7 +77,10 @@
     <a onclick="showProject('COLLAGE')">COLLAGE</a>
 </nav>
 
-<div id="slideshow-container" class="slideshow-container"></div>
+<div id="slideshow-container" class="slideshow-container">
+    <div class="prev" onclick="plusSlides(-1)">&#10094;</div>
+    <div class="next" onclick="plusSlides(1)">&#10095;</div>
+</div>
 
 <script>
     const projects = {
@@ -76,7 +96,9 @@
         const slideshowContainer = document.getElementById('slideshow-container');
         slideshowContainer.innerHTML = '';
 
-        projects[projectName].forEach((image, index) => {
+        const projectImages = projects[projectName].sort(() => Math.random() - 0.5);
+
+        projectImages.forEach((image, index) => {
             const slide = document.createElement('div');
             slide.className = 'mySlides';
             slide.innerHTML = `<img src="${image}" class="zoomable-image">`;
@@ -99,6 +121,11 @@
             slides[i].style.display = 'none';
         }
         slides[n - 1].style.display = 'block';
+    }
+
+    function plusSlides(n) {
+        const currentSlide = Array.from(document.getElementsByClassName('mySlides')).findIndex(slide => slide.style.display === 'block');
+        showSlides(currentSlide + 1 + n);
     }
 </script>
 
