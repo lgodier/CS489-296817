@@ -33,6 +33,7 @@
             max-width: 800px;
             margin: 20px auto;
             position: relative;
+            overflow: hidden;
         }
 
         .mySlides {
@@ -55,7 +56,6 @@
         #slideshow-container .prev, #slideshow-container .next {
             position: absolute;
             top: 50%;
-            transform: translateY(-50%);
             font-size: 20px;
             color: white;
             cursor: pointer;
@@ -74,6 +74,27 @@
 
         #image-container {
             display: flex;
+            position: relative;
+        }
+
+        #image-container .prev, #image-container .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: white;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            z-index: 1;
+        }
+
+        #image-container .prev {
+            left: 0;
+        }
+
+        #image-container .next {
+            right: 0;
         }
     </style>
 </head>
@@ -89,9 +110,7 @@
 </nav>
 
 <div id="slideshow-container" class="slideshow-container">
-    <div class="prev" onclick="plusSlides(-1)">&#10094;</div>
     <div id="image-container" class="image-container"></div>
-    <div class="next" onclick="plusSlides(1)">&#10095;</div>
 </div>
 
 <script>
