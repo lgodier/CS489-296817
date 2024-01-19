@@ -30,6 +30,7 @@
 
         .image-container {
             max-width: 800px;
+            max-height: 400px;
             margin: 20px auto;
             position: relative;
         }
@@ -82,9 +83,9 @@
     <a onclick="showProject('COLLAGE')">COLLAGE</a>
 </nav>
 
-<div id="image-container" class="image-container">
+<div id="slideshow" class="slideshow">
     <div class="prev" onclick="plusSlides(-1)">&#10094;</div>
-    <div id="slideshow-container" class="slideshow-container"></div>
+    <div id="image-container" class="image-container"></div>
     <div class="next" onclick="plusSlides(1)">&#10095;</div>
 </div>
 
@@ -102,7 +103,7 @@
     showProject('EMPATHY');
 
     function showProject(projectName) {
-        const slideshowContainer = document.getElementById('slideshow-container');
+        const slideshowContainer = document.getElementById('image-container');
         slideshowContainer.innerHTML = '';
 
         const projectImages = [...projects[projectName]]; // Copy the array before sorting
