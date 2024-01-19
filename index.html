@@ -79,6 +79,7 @@
 
 <div id="slideshow-container" class="slideshow-container">
     <div class="prev" onclick="plusSlides(-1)">&#10094;</div>
+    <div id="image-container" class="image-container"></div>
     <div class="next" onclick="plusSlides(1)">&#10095;</div>
 </div>
 
@@ -93,7 +94,7 @@
     };
 
     function showProject(projectName) {
-        const slideshowContainer = document.getElementById('slideshow-container');
+        const slideshowContainer = document.getElementById('image-container');
         slideshowContainer.innerHTML = '';
 
         const projectImages = projects[projectName].sort(() => Math.random() - 0.5);
