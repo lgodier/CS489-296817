@@ -18,7 +18,7 @@
             background-color: #333;
             padding: 10px;
             text-align: center;
-            width: 100%; /* Adjusted to fit the width of the screen */
+            width: 100%;
         }
 
         nav a {
@@ -27,6 +27,10 @@
             padding: 10px;
             margin: 0 10px;
             cursor: pointer;
+        }
+
+        nav a.active {
+            background-color: #555; /* Adjusted color for the active menu item */
         }
 
         .image-container {
@@ -75,12 +79,13 @@
 <body>
 
 <nav>
-    <a onclick="showProject('EMPATHY')">EMPATHY</a>
-    <a onclick="showProject('DECOMPOSITION')">DECOMPOSITION</a>
-    <a onclick="showProject('ANALOGY')">ANALOGY</a>
-    <a onclick="showProject('STYLE')">STYLE</a>
-    <a onclick="showProject('CONTEXT')">CONTEXT</a>
-    <a onclick="showProject('COLLAGE')">COLLAGE</a>
+    <a onclick="showProject('EMPATHY')" id="empathy">EMPATHY</a>
+    <a onclick="showProject('DECOMPOSITION')" id="decomposition">DECOMPOSITION</a>
+    <a onclick="showProject('ANALOGY')" id="analogy">ANALOGY</a>
+    <a onclick="showProject('STYLE')" id="style">STYLE</a>
+    <a onclick="showProject('CONTEXT')" id="context">CONTEXT</a>
+    <a onclick="showProject('COLLAGE')" id="collage">COLLAGE</a>
+    <a onclick="showProject('ALL')" id="all">ALL</a>
 </nav>
 
 <div id="slideshow" class="slideshow">
@@ -97,7 +102,7 @@
         STYLE: ['style1.png', 'style2.png', 'style3.png'],
         CONTEXT: ['context1.png', 'context2.png', 'context3.png'],
         COLLAGE: ['collage1.png', 'collage2.png', 'collage3.png'],
-        ALL: ['style1.png', 'context1.png', 'context2.png', 'context3.png','collage1.png', 'collage2.png', 'collage3.png','style2.png', 'style3.png','empathy1.png', 'analogy1.png', 'analogy2.png', 'analogy3.png','empathy2.png', 'empathy3.png','decomposition1.png', 'decomposition2.png', 'decomposition3.png'],
+        ALL: ['style1.png', 'context1.png', 'context2.png', 'context3.png', 'collage1.png', 'collage2.png', 'collage3.png', 'style2.png', 'style3.png', 'empathy1.png', 'analogy1.png', 'analogy2.png', 'analogy3.png', 'empathy2.png', 'empathy3.png', 'decomposition1.png', 'decomposition2.png', 'decomposition3.png'],
     };
 
     // Load default slideshow on page load
@@ -107,7 +112,7 @@
         const slideshowContainer = document.getElementById('image-container');
         slideshowContainer.innerHTML = '';
 
-        const projectImages = [...projects[projectName]]; // Copy the array before sorting
+        const projectImages = [...projects[projectName]];
         projectImages.sort(() => Math.random() - 0.5);
 
         projectImages.forEach((image, index) => {
@@ -118,6 +123,16 @@
         });
 
         showSlides(1);
+
+        // Remove the 'active' class from all menu items
+        const menuItems = document.querySelectorAll('nav a');
+        menuItems.forEach(item => item.classList.remove('active'));
+
+        // Add the 'active' class to the selected menu item
+        const selectedMenuItem = document.getElementById(projectName.toLowerCase());
+        if (selectedMenuItem) {
+            selectedMenuItem.classList.add('active');
+        }
     }
 
     function showSlides(n) {
@@ -136,10 +151,4 @@
     }
 
     function plusSlides(n) {
-        const currentSlide = Array.from(document.getElementsByClassName('mySlides')).findIndex(slide => slide.style.display === 'block');
-        showSlides(currentSlide + 1 + n);
-    }
-</script>
-
-</body>
-</html>
+        const currentSlide = Array.from(document.getElementsByClassName
