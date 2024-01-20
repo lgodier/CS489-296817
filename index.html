@@ -151,4 +151,10 @@
     }
 
     function plusSlides(n) {
-        const currentSlide = Array.from(document.getElementsByClassName
+        const currentSlide = Array.from(document.getElementsByClassName('mySlides')).findIndex(slide => slide.style.display === 'block');
+        showSlides(currentSlide + 1 + n);
+    }
+</script>
+
+</body>
+</html>
