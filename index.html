@@ -18,6 +18,7 @@
             background-color: #333;
             padding: 10px;
             text-align: center;
+            width: 100%; /* Adjusted to fit the width of the screen */
         }
 
         nav a {
@@ -37,19 +38,18 @@
         .mySlides {
             display: none;
             height: 80vh;
+            overflow: hidden;
         }
 
         .mySlides img {
             height: 100%;
             width: auto;
-        }
-
-        .zoomable-image {
             transition: transform 0.3s;
         }
 
-        .zoomable-image:hover {
+        .mySlides:hover img {
             transform: scale(1.5);
+            transform-origin: calc((event.clientX - this.getBoundingClientRect().left) / this.clientWidth * 100) calc((event.clientY - this.getBoundingClientRect().top) / this.clientHeight * 100);
         }
 
         .prev, .next {
