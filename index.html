@@ -97,10 +97,11 @@
         STYLE: ['style1.png', 'style2.png', 'style3.png'],
         CONTEXT: ['context1.png', 'context2.png', 'context3.png'],
         COLLAGE: ['collage1.png', 'collage2.png', 'collage3.png'],
+        ALL: ['style1.png', 'context1.png', 'context2.png', 'context3.png','collage1.png', 'collage2.png', 'collage3.png','style2.png', 'style3.png','empathy1.png', 'analogy1.png', 'analogy2.png', 'analogy3.png','empathy2.png', 'empathy3.png','decomposition1.png', 'decomposition2.png', 'decomposition3.png'],
     };
 
     // Load default slideshow on page load
-    showProject('EMPATHY');
+    showProject('ALL');
 
     function showProject(projectName) {
         const slideshowContainer = document.getElementById('image-container');
